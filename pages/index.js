@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import Header from '../components/Header'
-import Sidebar from '../components/Sidebar'
+import Head from "next/head";
+import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 
 export default function Home() {
   return (
@@ -11,12 +11,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className='flex bg-gray-100'>
+      <main className="flex bg-gray-100">
         {/* Left Sidebar */}
         <Sidebar />
         {/* Feed (Create Post and Posts)*/}
         {/* Right Sidebar */}
       </main>
     </div>
-  )
+  );
 }
