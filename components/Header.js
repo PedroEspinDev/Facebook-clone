@@ -68,10 +68,13 @@ const Header = () => {
       </div>
       {/* Right */}
       <div className="flex items-center justify-end min-w-fit space-x-2">
-        <img 
-        onClick={signOut}
-        src={session?.user.image} height={40} width={40} 
-        className="rounded-full cursor-pointer"/>
+        <img
+          onClick={signOut}
+          src={session?.user.image}
+          height={40}
+          width={40}
+          className="rounded-full cursor-pointer"
+        />
         <p className="hidden xl:inline-flex font-semibold texr-sm whitespace-nowrap p-3 max-w-xs">
           {session?.user.name.split(" ")[0]}
         </p>
