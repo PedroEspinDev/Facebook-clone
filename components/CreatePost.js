@@ -24,7 +24,6 @@ const CreatePost = () => {
           <button hidden></button>
         </form>
       </div>
-
       <div className="flex justify-evenly py-2">
         <div className="flex items-center p-1 space-x-1 flex-grow justify-center hover:bg-gray-100 rounded-md hover:cursor-pointer">
           <HiOutlineVideoCamera size={20} className="text-red-500" />
