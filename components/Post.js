@@ -14,8 +14,9 @@ const Post = () => {
           />
           <div>
             <p className="font-medium">Pedro Espín</p>
-            <p className="text-xs text-gray-500"></p>
-            {new Date().toLocaleString()}
+            <p className="text-xs text-gray-500">
+              {new Date().toLocaleString()}
+            </p>
           </div>
         </div>
         <p className="py-4">Past week in the circuit</p>
