@@ -5,7 +5,6 @@ import { IoMdPhotos } from "react-icons/io";
 import { BsEmojiSmile } from "react-icons/bs";
 import { useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { formatWithValidation } from "next/dist/shared/lib/utils";
 
 const CreatePost = () => {
   const FACEBOOK_CLONE_ENDPOINT = "";
@@ -47,8 +46,6 @@ const CreatePost = () => {
       })
       .then((response) => {
         inputRef.current.value = "";
-        dispatch(addPost(response.data));
-        console.log(response.data);
         removeImage();
       })
       .catch((error) => {
