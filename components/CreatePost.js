@@ -5,6 +5,8 @@ import { IoMdPhotos } from "react-icons/io";
 import { BsEmojiSmile } from "react-icons/bs";
 import { useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+import { addPost } from "../public/src/features/postSlice";
 
 const CreatePost = () => {
   const FACEBOOK_CLONE_ENDPOINT = "";
@@ -12,6 +14,7 @@ const CreatePost = () => {
   const inputRef = useRef(null);
   const hiddenFileInput = useRef(null);
   const [imageToPost, setImageToPost] = useState(null);
+  const dispatch = useDispatch();
   const handleClick = () => {
     hiddenFileInput.current.click();
   };
@@ -46,6 +49,7 @@ const CreatePost = () => {
       })
       .then((response) => {
         inputRef.current.value = "";
+        dispatch(addPost(response.data))
         removeImage();
       })
       .catch((error) => {
