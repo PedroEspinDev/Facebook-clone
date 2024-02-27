@@ -1,15 +1,15 @@
-import { useSession } from "next-auth/react";
-import React, { useRef } from "react";
+import {React, useState, useRef } from "react";
 import { HiOutlineVideoCamera } from "react-icons/hi";
 import { IoMdPhotos } from "react-icons/io";
 import { BsEmojiSmile } from "react-icons/bs";
-import { useState } from "react";
+import { useSession } from "next-auth/react";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useDispatch } from "react-redux";
+import axios from "axios";
 import { addPost } from "../public/src/features/postSlice";
+import { useDispatch } from "react-redux";
 
 const CreatePost = () => {
-  const FACEBOOK_CLONE_ENDPOINT = "";
+  const FACEBOOK_CLONE_ENDPOINT = "http://localhost:8080/api/v1/post";
   const { data: session } = useSession();
   const inputRef = useRef(null);
   const hiddenFileInput = useRef(null);
@@ -38,7 +38,9 @@ const CreatePost = () => {
     if(!inputRef.current.value) return;
     const formData = new FormData();
 
-    formaData.append("file", imageToPost);
+    formData.append("file", imageToPost);
+    console.log("imagetopost: " + imageToPost);
+    formData.append("post", inputRef.current.value);
     formData.append("name", session?.user.name);
     formData.append("email", session?.user.email);
     formData.append("profilePic", session?.user.image);
