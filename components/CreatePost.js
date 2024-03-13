@@ -8,36 +8,24 @@ import axios from "axios";
 import { addPost } from "../public/src/features/postSlice";
 import { useDispatch } from "react-redux";
 
+
 const CreatePost = () => {
   const FACEBOOK_CLONE_ENDPOINT = "http://localhost:8080/api/v1/post";
   const { data: session } = useSession();
+  const dispatch = useDispatch();
   const inputRef = useRef(null);
   const hiddenFileInput = useRef(null);
   const [imageToPost, setImageToPost] = useState(null);
-  const dispatch = useDispatch();
+  
   const handleClick = () => {
     hiddenFileInput.current.click();
-  };
-
-  const addImageToPost = (e) => {
-    const reader = new FileReader();
-    if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload = (e) => {
-        setImageToPost(e.target.result);
-      };
-    }
-  };
-
-  const removeImage = () => {
-    setImageToPost(null);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if(!inputRef.current.value) return;
     const formData = new FormData();
-
+    
     formData.append("file", imageToPost);
     console.log("imagetopost: " + imageToPost);
     formData.append("post", inputRef.current.value);
@@ -46,21 +34,36 @@ const CreatePost = () => {
     formData.append("profilePic", session?.user.image);
 
     axios
-      .post(FACEBOOK_CLONE_ENDPOINT, formData, {
+    .post(FACEBOOK_CLONE_ENDPOINT, formData, {
         headers: { Accept: "application/json" },
       })
       .then((response) => {
         inputRef.current.value = "";
         dispatch(addPost(response.data))
+        console.log(response.data);
         removeImage();
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+    };
+    
+    const addImageToPost = (e) => {
+      const reader = new FileReader();
+      if (e.target.files[0]) {
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = (e) => {
+          setImageToPost(e.target.result);
+        };
+      }
+    };
+  
+    const removeImage = () => {
+      setImageToPost(null);
+    };
 
   return (
-    <div className="bg-white rounded-md text-gray-500 p-2 ">
+    <div className="bg-white rounded-md shadow-md text-gray-500 p-2 ">
       <div className="flex p-4 space-x-2 items-center">
         <img
           src={session?.user.image}

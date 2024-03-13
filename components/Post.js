@@ -6,7 +6,7 @@ import { RiShareForwardLine } from "react-icons/ri";
 
 const Post = ({ post }) => {
   return (
-    <div className="flex flex-col key={post.id}">
+    <div className="flex flex-col" key={post.id}>
       <div className="bg-white mt-6 rounded-md p-4">
         <div className="flex items-center space-x-2">
           <img src={post.profilePic} className="rounded-full w-10 h-10" />
@@ -19,8 +19,8 @@ const Post = ({ post }) => {
       </div>
       {/* If Any Image */}
       {post.image != null && (
-        <div className="h-60 md:h-96 bg-white">
-          <Image src={post.image} objectfit="cover" layout="fill"></Image>
+        <div className="relative h-60 md:h-96 bg-white">
+          <Image src={post.image} objectFit="cover" layout="fill"/>
         </div>
       )}
       {/* Footer */}

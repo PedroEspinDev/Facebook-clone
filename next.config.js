@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["upload.wikimedia.org","images.pexels.com"]
+    domains: ["upload.wikimedia.org", "images.pexels.com"]
   }
 }
 
